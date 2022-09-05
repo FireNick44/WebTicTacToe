@@ -1,0 +1,32 @@
+* {
+   margin: 0px;
+   padding: 0px;
+}
+
+body {
+   font-family: "BerlinType", monospace;
+   font-variation-settings: "wght" 400, "wdth" 100;
+   font-size: 1.1rem;
+   overflow-x: hidden;
+   overflow: overlay;
+   margin: 0px;
+   padding: 0px;
+   width: 100%;
+   height: 100%;
+}
+
+html {
+   box-sizing: border-box;
+   text-rendering: optimizeLegibility;
+   scroll-behavior: smooth;
+   width: 100%;
+   height: 100%;
+}
+
+@font-face {
+   font-family: BerlinType;
+   src: url(/src/font/BerlinTypeWeb-Regular.woff2) format("truetype");
+   font-weight: 200 100;
+   font-style: normal;
+}
+
