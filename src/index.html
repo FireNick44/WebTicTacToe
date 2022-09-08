@@ -13,7 +13,11 @@
    <div class="centerNav">
       <nav>
          <div>Leicht</div>
-         <div>Menu</div>
+         <div>
+            <svg viewBox="0 0 100 100">
+               <use xlink:href="./svg/settings.svg#1"></use>
+            </svg>
+         </div>
       </nav>
    </div>
    <div class="center">
@@ -21,17 +25,25 @@
          <p>Info Text</p>
       </div>
       <div class="card Tcard">
-         <button class="btn" id="btn1" onclick="btnClick()"></button>
-         <button class="btn" id="btn2" onclick="btnClick()"></button>
-         <button class="btn" id="btn3" onclick="btnClick()"></button>
-         <button class="btn" id="btn4" onclick="btnClick()"></button>
-         <button class="btn" id="btn5" onclick="btnClick()"></button>
-         <button class="btn" id="btn6" onclick="btnClick()"></button>
-         <button class="btn" id="btn7" onclick="btnClick()"></button>
-         <button class="btn" id="btn8" onclick="btnClick()"></button>
-         <button class="btn" id="btn9" onclick="btnClick()"></button>
+         <button class="btn" id="btn1" onclick="btnClick()">
+            <svg viewBox="0 0 100 100">
+               <use xlink:href="./svg/cross.svg#1"></use>
+            </svg>
+         </button>
+         <button class="btn" id="btn2" onclick="btnClick()">
+            <svg viewBox="0 0 100 100">
+               <use xlink:href="./svg/circle.svg#1"></use>
+            </svg>
+         </button>
+         <button id="btn3" onclick="btnClick()"></button>
+         <button id="btn4" onclick="btnClick()"></button>
+         <button id="btn5" onclick="btnClick()"></button>
+         <button id="btn6" onclick="btnClick()"></button>
+         <button id="btn7" onclick="btnClick()"></button>
+         <button id="btn8" onclick="btnClick()"></button>
+         <button id="btn9" onclick="btnClick()"></button>
       </div>
-      <button class="btnEvents">Start</button>
+      <button class="btnEvents card">Start</button>
    </div>
    <script src="./js/TicTacToe.js"></script>
 </body>

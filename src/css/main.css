@@ -13,7 +13,8 @@ body {
   padding: 0px;
   width: 100%;
   height: 100%;
-  background-color: #559faf;
+  background: linear-gradient(140.54deg, #018560 0%, #231717 72.37%), linear-gradient(58.72deg, #0029FF 0%, #8FFF00 100%), radial-gradient(100% 164.72% at 100% 100%, #6100FF 0%, #00FF57 100%), radial-gradient(100% 148.07% at 0% 0%, #FFF500 0%, #4cc900 100%);
+  background-blend-mode: color-dodge, overlay, difference, normal;
 }
 
 html {
@@ -42,7 +43,15 @@ p {
   margin: 30px;
 }
 
+button {
+  border: none;
+  height: 100%;
+  width: 100%;
+  padding: 8px;
+}
+
 .centerNav {
+  position: absolute;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -78,15 +87,15 @@ p {
   width: auto;
 }
 
-.btn {
-  border: none;
-  height: 100%;
-  width: 100%;
-}
-
 .btnEvents {
   margin-top: 30px;
   padding: 15px 32px;
   border: none;
   border-radius: 8px;
+  height: 50px;
+  width: 100px;
+}
+
+.fill {
+  fill: black;
 }/*# sourceMappingURL=main.css.map */
