@@ -38,11 +38,17 @@ html{
 }
 
 nav{
-   display: flex;
-   justify-content: space-between;
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   margin-left: auto;
+   margin-right: auto;
    padding: 10px;
    max-width: 600px;
    width: calc(100% - 20px);
+   height: 200px;
+   z-index: 10;
 }
 
 p{
@@ -56,9 +62,39 @@ button{
    padding: 8px;
 }
 
-.centerNav{
+.settingIco{
    position: absolute;
+   right: 6px;
+   top: 6px;
+   height: 24px;
+   width: 24px;
+}
+
+.settingBox{
+   position: absolute;
+   right: 10px;
+   height: 24px;
+   width: 24px;
+   padding: 6px;
+}
+
+.settingBoxOpen{
+   height: 200px;
+   width: 200px;
+}
+
+
+.difficultyBox{
+   position: absolute;
+   left: 10px;
+   height: 24px;
+   padding: 6px 15px;
+}
+
+.centerNav{
+   position: relative;
    width: 100%;
+   margin-top: 40px;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -77,7 +113,7 @@ button{
    backdrop-filter: blur(4px) saturate(170%);
    background-color: rgba(255, 255, 255, 0.65);
    border-radius: 12px;
-   border: 1px solid rgba(209, 213, 219, 0.3);
+   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .Tcard{
