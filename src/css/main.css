@@ -39,8 +39,7 @@ nav {
   margin-left: auto;
   margin-right: auto;
   padding: 10px;
-  max-width: 600px;
-  width: calc(100% - 20px);
+  width: calc(70% - 20px);
   height: 200px;
   z-index: 10;
 }
@@ -54,6 +53,18 @@ button {
   height: 100%;
   width: 100%;
   padding: 8px;
+}
+
+.difficultyBox {
+  overflow: hidden;
+  position: absolute;
+  left: 10px;
+  height: 24px;
+  padding: 6px 12px;
+}
+
+.difficultyIco {
+  height: 12px;
 }
 
 .settingIco {
@@ -75,13 +86,6 @@ button {
 .settingBoxOpen {
   height: 200px;
   width: 200px;
-}
-
-.difficultyBox {
-  position: absolute;
-  left: 10px;
-  height: 24px;
-  padding: 6px 15px;
 }
 
 .centerNav {
