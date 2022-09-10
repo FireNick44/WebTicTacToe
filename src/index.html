@@ -11,36 +11,26 @@
 </head>
 <body>
    <nav>
-      <div class="difficultyBox card" onclick="settingsMenu">
-         <div>
-            <svg class="difficultyIco" viewBox="0 0 100 100">
+      <div class="difficultyBox card" onclick="difficultyMenuActive()">
+         <div class="difficultySelection">
+            <div id="easyBox" class="" onclick="difficultySetActive(1)">
+               Leicht
+            </div>
+            <div id="normalBox" class="hide" onclick="difficultySetActive(2)">
+               Mittel
+            </div>
+            <div id="hardBox" class="hide" onclick="difficultySetActive(3)">
+               Schwirig
+            </div>
+            <div id="impossibleBox" class="hide" onclick="difficultySetActive(4)">
+               Unmöglich
+            </div>
+            <div id="twoPlayerBox" class="hide" onclick="difficultySetActive(5)">
+               Mehrspieler
+            </div>
+            <svg id="difficultyIco" class="difficultyIco" viewBox="0 0 100 100">
                <use xlink:href="./svg/selectArrow.svg#1"></use>
             </svg>
-            Leicht
-         </div>
-         <div>
-            <svg class="difficultyIco" viewBox="0 0 100 100">
-               <use xlink:href="./svg/selectArrow.svg#1"></use>
-            </svg>
-            Mittel
-         </div>
-         <div>
-            <svg class="difficultyIco" viewBox="0 0 100 100">
-               <use xlink:href="./svg/selectArrow.svg#1"></use>
-            </svg>
-            Schwirig
-         </div>
-         <div>
-            <svg class="difficultyIco" viewBox="0 0 100 100">
-               <use xlink:href="./svg/selectArrow.svg#1"></use>
-            </svg>
-            Unmöglich
-         </div>
-         <div>
-            <svg class="difficultyIco" viewBox="0 0 100 100">
-               <use xlink:href="./svg/selectArrow.svg#1"></use>
-            </svg>
-            Mehrspieler
          </div>
       </div>
       <div class="settingBox card">
@@ -64,7 +54,7 @@
                <use xlink:href="./svg/circle.svg#1"></use>
             </svg>
          </button>
-         <button id="btn3" onclick="btnClick()"></button>
+         <button id="btn3" onclick="btnClick(1)"></button>
          <button id="btn4" onclick="btnClick()"></button>
          <button id="btn5" onclick="btnClick()"></button>
          <button id="btn6" onclick="btnClick()"></button>
@@ -74,6 +64,6 @@
       </div>
       <button class="btnEvents card">Start</button>
    </div>
-   <script src="./js/TicTacToe.js"></script>
+   <script src="./ts/TicTacToe.js"></script>
 </body>
 </html>

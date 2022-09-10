@@ -1,3 +1,1 @@
-function btnClick(){
-   alert("Test");
-}
+// Still in debug, js is in /src/ts/TicTacToe.js

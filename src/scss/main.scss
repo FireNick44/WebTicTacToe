@@ -62,25 +62,81 @@ button{
    padding: 8px;
 }
 
+.hide{
+   visibility: hidden;
+}
+
+.visible{
+   visibility: visible;
+}
 
 .difficultyBox{
    overflow: hidden;
    position: absolute;
    left: 10px;
-   height: 24px;
-   padding: 6px 12px;
+   padding: 6px 15px 6px 22px;
+   cursor: pointer;
+}
+
+.difficultySelection{
+   height: 100%;
+   width: 100%;
 }
 
 .difficultyIco{
+   position: absolute;
+   top: 12px;
+   left: 5px;
    height: 12px;
+   transition: all 0.3s ease-in-out;
+}
+
+div#easyBox:hover ~ .difficultyIco{
+   top: 12px;
+}
+
+div#normalBox:hover ~ .difficultyIco{
+   top: 37px;
+}
+
+div#hardBox:hover ~ .difficultyIco{
+   top: 62px;
+}
+
+div#impossibleBox:hover ~ .difficultyIco{
+   top: 87px;
+}
+
+div#twoPlayerBox:hover ~ .difficultyIco{
+   top: 112px;
+}
+
+.top1{
+   pointer-events: none;
+}
+
+.top2{
+   top: 37px;
+}
+
+.top3{
+   top: 62px;
+}
+
+.top4{
+   top: 87px;
+}
+
+.top5{
+   top: 112px;
 }
 
 .settingIco{
    position: absolute;
-   right: 6px;
-   top: 6px;
-   height: 24px;
-   width: 24px;
+   right: 7px;
+   top: 7px;
+   height: 22px;
+   width: 22px;
 }
 
 .settingBox{
@@ -89,11 +145,7 @@ button{
    height: 24px;
    width: 24px;
    padding: 6px;
-}
-
-.settingBoxOpen{
-   height: 200px;
-   width: 200px;
+   cursor: pointer;
 }
 
 .centerNav{
