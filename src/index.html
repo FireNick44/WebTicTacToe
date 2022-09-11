@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+   
    <link rel="shortcut icon" href="/src/svg/logo.svg">
    <link rel="stylesheet" href="/src/css/main.css">
    <title>WebTicTacToe</title>
 </head>
+
 <body>
    <nav>
       <div class="difficultyBox card" onclick="difficultyMenuActive()">
@@ -33,37 +37,37 @@
             </svg>
          </div>
       </div>
-      <div class="settingBox card">
-         <svg class="settingIco" viewBox="0 0 100 100">
+      <div id="setting" class="settingBox card">
+         <p id="settingLabel" class="settingLabel hide">Einstellungen</p>
+         <div id="settingOptions" class="settingOptions hide">
+            <p>Farbe</p>
+            <p>Sprache</p>
+            <p>usw...</p>
+         </div>
+         <svg id="settingIco" class="settingIco" viewBox="0 0 100 100" onclick="settingMenuActive()">
             <use xlink:href="./svg/settings.svg#1"></use>
          </svg>
       </div>
    </nav>
    <div class="center">
       <div class="infoBord">
-         <p>Info Text</p>
+         <p id="info" class="info">Klicke auf ein Feld, um zu beginnen</p>
       </div>
       <div class="card Tcard">
-         <button class="btn" id="btn1" onclick="btnClick()">
-            <svg viewBox="0 0 100 100">
-               <use xlink:href="./svg/cross.svg#1"></use>
-            </svg>
-         </button>
-         <button class="btn" id="btn2" onclick="btnClick()">
-            <svg viewBox="0 0 100 100">
-               <use xlink:href="./svg/circle.svg#1"></use>
-            </svg>
-         </button>
-         <button id="btn3" onclick="btnClick(1)"></button>
-         <button id="btn4" onclick="btnClick()"></button>
-         <button id="btn5" onclick="btnClick()"></button>
-         <button id="btn6" onclick="btnClick()"></button>
-         <button id="btn7" onclick="btnClick()"></button>
-         <button id="btn8" onclick="btnClick()"></button>
-         <button id="btn9" onclick="btnClick()"></button>
+         <button id="1" onclick="tKlick(this)"></button>
+         <button id="2" onclick="tKlick(this)"></button>
+         <button id="3" onclick="tKlick(this)"></button>
+         <button id="4" onclick="tKlick(this)"></button>
+         <button id="5" onclick="tKlick(this)"></button>
+         <button id="6" onclick="tKlick(this)"></button>
+         <button id="7" onclick="tKlick(this)"></button>
+         <button id="8" onclick="tKlick(this)"></button>
+         <button id="9" onclick="tKlick(this)"></button>
       </div>
       <button class="btnEvents card">Start</button>
    </div>
    <script src="./ts/TicTacToe.js"></script>
 </body>
+
 </html>
+

@@ -44,10 +44,6 @@ nav {
   z-index: 10;
 }
 
-p {
-  margin: 30px;
-}
-
 button {
   border: none;
   height: 100%;
@@ -55,8 +51,29 @@ button {
   padding: 8px;
 }
 
+button#b1 {
+  border-radius: 8px 0px 0px 0px;
+}
+
+button#b3 {
+  border-radius: 0px 8px 0px 0px;
+}
+
+button#b7 {
+  border-radius: 0px 0px 0px 8px;
+}
+
+button#b9 {
+  border-radius: 0px 0px 8px 0px;
+}
+
+.info {
+  margin: 30px;
+}
+
 .hide {
   visibility: hidden;
+  transition: all 0.4s;
 }
 
 .visible {
@@ -68,6 +85,7 @@ button {
   position: absolute;
   left: 10px;
   padding: 6px 15px 6px 22px;
+  transition: all 0.4s;
   cursor: pointer;
 }
 
@@ -124,21 +142,39 @@ div#twoPlayerBox:hover ~ .difficultyIco {
   top: 112px;
 }
 
-.settingIco {
-  position: absolute;
-  right: 7px;
-  top: 7px;
-  height: 22px;
-  width: 22px;
-}
-
 .settingBox {
   position: absolute;
   right: 10px;
   height: 24px;
   width: 24px;
   padding: 6px;
+  transition: all 0.4s;
+  overflow: hidden;
+}
+
+.settingIco {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  height: 22px;
+  width: 22px;
   cursor: pointer;
+  transition: all 0.8s;
+}
+
+.settingBoxOpen {
+  height: 122px;
+  width: 140px;
+}
+
+.settingIcoOpen {
+  transform: rotate(90deg);
+}
+
+.settingOptions {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
 }
 
 .centerNav {
@@ -174,7 +210,7 @@ div#twoPlayerBox:hover ~ .difficultyIco {
   row-gap: 10px;
   -moz-column-gap: 10px;
        column-gap: 10px;
-  padding: 10px;
+  padding: 15px;
   height: auto;
   width: auto;
 }

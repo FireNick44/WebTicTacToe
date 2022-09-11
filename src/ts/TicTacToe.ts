@@ -2,6 +2,8 @@
 var difficultyWindowActive:boolean = false;
 var difficultyActive:number = 1;
 
+var settingWindowActive:boolean = false;
+
 // ElementsById
 let easyBox = document.getElementById("easyBox");
 let normalBox = document.getElementById("normalBox");
@@ -42,7 +44,6 @@ function setDifficultyMenuInactive(value){
    if(!value?.classList.contains('hide')) value.classList.add('hide');
 }
 
-
 function difficultySetActive(value){
 
    difficultyActive = value; //without validation !!!
@@ -76,4 +77,58 @@ function delDifficultyArrow(){
    else if(difficultyActive == 5) tmp?.classList.remove('top5');
 }
 
+//setting Stuff
+function settingMenuActive(){
+
+   if(settingWindowActive) settingWindowActive = false;
+   else if(!settingWindowActive) settingWindowActive = true;
+
+   let settingMenu = document.getElementById("setting");
+   let settingIco = document.getElementById("settingIco");
+   let settingLabel = document.getElementById("settingLabel");
+   let settingOptions = document.getElementById("settingOptions");
+
+   settingMenu?.classList.toggle("settingBoxOpen");
+   settingIco?.classList.toggle("settingIcoOpen");
+   settingLabel?.classList.toggle("hide");
+   settingOptions?.classList.toggle("hide");
+
+
+
+}
+
 //TicTacToe Stuff
+
+var counter:number = 0;
+var difficulty:number = difficultyActive;
+var tField:number[] = new Array(0,0,0,0,0,0,0,0,0,0);
+
+function tKlick(sender:Element){
+   
+   
+   if(tField[sender.id] == 0) {
+      tField[sender.id] = 1;
+      createSVG(true, sender);
+   }
+   
+   console.log(tField);
+}
+
+
+function createSVG(type:boolean , sender){
+   let linkCircle = "./svg/circle.svg#circle";
+   let linkCross = "./svg/cross.svg#crossSVG1";
+   let link:string = "http://www.w3.org/2000/svg";
+
+   let svg = document.createElementNS(link, "svg");
+   let use = document.createElementNS(link, "use");
+
+   if(type) use.setAttribute('href', linkCircle);
+   else if(!type) use.setAttribute('href', linkCross);
+
+   use.setAttribute('href', linkCross);
+   svg.setAttribute('viewBox', '0 0 100 100' );
+   svg.appendChild(use);
+
+   document.getElementById(sender.id).appendChild(svg);
+}
