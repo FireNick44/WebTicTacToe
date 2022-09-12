@@ -96,7 +96,7 @@ var tField: number[] = new Array(5, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var pSkip: boolean = false
 
 function tKlick(sender: Element) {
-   if (tField[sender.id] == null) {
+   if (tField[sender.id] == 0) {
       if(pSkip){
          turnPlayer(sender.id, false)
          pSkip = false;

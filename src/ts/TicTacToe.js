@@ -89,7 +89,7 @@ var difficulty = difficultyActive;
 var tField = new Array(5, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 var pSkip = false;
 function tKlick(sender) {
-    if (tField[sender.id] == null) {
+    if (tField[sender.id] == 0) {
         if (pSkip) {
             turnPlayer(sender.id, false);
             pSkip = false;
