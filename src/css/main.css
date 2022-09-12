@@ -109,11 +109,11 @@ div#normalBox:hover ~ .difficultyIco {
   top: 37px;
 }
 
-div#hardBox:hover ~ .difficultyIco {
+div#impossibleBox:hover ~ .difficultyIco {
   top: 62px;
 }
 
-div#impossibleBox:hover ~ .difficultyIco {
+div#twoPlayer:hover ~ .difficultyIco {
   top: 87px;
 }
 

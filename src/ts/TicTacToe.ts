@@ -7,8 +7,8 @@ var settingWindowActive: boolean = false;
 // ElementsById
 let easyBox = document.getElementById("easyBox");
 let normalBox = document.getElementById("normalBox");
-let hardBox = document.getElementById("hardBox");
 let impossibleBox = document.getElementById("impossibleBox");
+let twoPlayer = document.getElementById("twoPlayer");
 
 //difficulty Stuff
 function difficultyMenuActive() {
@@ -19,13 +19,13 @@ function difficultyMenuActive() {
    if (difficultyWindowActive) {
       setDifficultyMenuActive(easyBox);
       setDifficultyMenuActive(normalBox);
-      setDifficultyMenuActive(hardBox);
       setDifficultyMenuActive(impossibleBox);
+      setDifficultyMenuActive(twoPlayer);
 
       easyBox?.classList.remove('top1')
       normalBox?.classList.remove('top1')
-      hardBox?.classList.remove('top1')
       impossibleBox?.classList.remove('top1')
+      twoPlayer?.classList.remove('top1')
 
       setDifficultyArrow();
    }
@@ -47,13 +47,13 @@ function difficultySetActive(value) {
 
    if (difficultyActive != 1) setDifficultyMenuInactive(easyBox);
    if (difficultyActive != 2) setDifficultyMenuInactive(normalBox);
-   if (difficultyActive != 3) setDifficultyMenuInactive(hardBox);
-   if (difficultyActive != 4) setDifficultyMenuInactive(impossibleBox);
+   if (difficultyActive != 3) setDifficultyMenuInactive(impossibleBox);
+   if (difficultyActive != 4) setDifficultyMenuInactive(twoPlayer);
 
    easyBox?.classList.add('top1')
    normalBox?.classList.add('top1')
-   hardBox?.classList.add('top1')
    impossibleBox?.classList.add('top1')
+   twoPlayer?.classList.add('top1')
 }
 
 function setDifficultyArrow() {
@@ -93,23 +93,22 @@ function settingMenuActive() {
 var counter: number = 0;
 var difficulty: number = difficultyActive;
 var tField: number[] = new Array(5, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+var round: number = 0;
 
 function tKlick(sender: Element) {
 
-
    if (tField[sender.id] == 0) {
       tField[sender.id] = 1;
-      createSVG(true, sender.id);
-      //turnAI();
-      countLeftFields();
+      createSVG(false, sender.id);
+      round++;
+      if(difficulty != 4) turnAI();
+      else turnPlayer();
    }
-
-   //console.log(tField);
 }
 
 
 function createSVG(type: boolean, id) {
-   let linkCircle = "./svg/circle.svg#circle";
+   let linkCircle = "./svg/circle.svg#circleSVG1";
    let linkCross = "./svg/cross.svg#crossSVG1";
    let link: string = "http://www.w3.org/2000/svg";
 
@@ -118,12 +117,12 @@ function createSVG(type: boolean, id) {
 
    if (type) use.setAttribute('href', linkCircle);
    else if (!type) use.setAttribute('href', linkCross);
-
-   use.setAttribute('href', linkCross);
+   
+   
    svg.setAttribute('viewBox', '0 0 100 100');
    svg.setAttribute('class', 'generatedSVG');
    svg.appendChild(use);
-
+   
    document.getElementById(id).appendChild(svg);
 }
 
@@ -131,10 +130,29 @@ function turnAI() {
 
    if (difficultyActive == 1) {
 
-      //getRandom();
+      let tmp = countLeftFields();
+      let tmpId = getRandom(tmp[0])
+      
+      //console.log(tmp[1][tmpId + 1]);
+      // console.log("tmp[1][tmpId]");
+      // console.log(tmp);
+      // console.log(tmp[1][(tmpId)]);
+      
+      createSVG(true, tmp[1][(tmpId)]);
+      
+      // console.log("tmpId AND STUFF");
+      // console.log(tmpId);
+      // console.log(tField[(tmpId)]);
+      // console.log(tField);
 
-      //document.getElementById("");
+      tField[tmp[1][(tmpId)]] = 1;
+
+      //console.log(tField);
    }
+}
+
+function turnPlayer(){
+   
 }
 
 function countLeftFields() {
@@ -151,6 +169,9 @@ function countLeftFields() {
       fieldCounter++
    };
 
+   console.log("countLeftFields:");
+   console.log(returnArray);
+
    returnArray.push(counter);
    returnArray.push(fieldNumber);
 
@@ -159,12 +180,12 @@ function countLeftFields() {
 
 
 function getRandom(max) {
-   return Math.floor(Math.random() * max);
+   return (Math.floor(Math.random() * max));
 
 }
 
 function findWinner() {
-
+   
 }
 
 function clearField(){

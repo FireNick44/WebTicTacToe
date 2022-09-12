@@ -5,8 +5,8 @@ var settingWindowActive = false;
 // ElementsById
 var easyBox = document.getElementById("easyBox");
 var normalBox = document.getElementById("normalBox");
-var hardBox = document.getElementById("hardBox");
 var impossibleBox = document.getElementById("impossibleBox");
+var twoPlayer = document.getElementById("twoPlayer");
 //difficulty Stuff
 function difficultyMenuActive() {
     if (difficultyWindowActive)
@@ -16,12 +16,12 @@ function difficultyMenuActive() {
     if (difficultyWindowActive) {
         setDifficultyMenuActive(easyBox);
         setDifficultyMenuActive(normalBox);
-        setDifficultyMenuActive(hardBox);
         setDifficultyMenuActive(impossibleBox);
+        setDifficultyMenuActive(twoPlayer);
         easyBox === null || easyBox === void 0 ? void 0 : easyBox.classList.remove('top1');
         normalBox === null || normalBox === void 0 ? void 0 : normalBox.classList.remove('top1');
-        hardBox === null || hardBox === void 0 ? void 0 : hardBox.classList.remove('top1');
         impossibleBox === null || impossibleBox === void 0 ? void 0 : impossibleBox.classList.remove('top1');
+        twoPlayer === null || twoPlayer === void 0 ? void 0 : twoPlayer.classList.remove('top1');
         setDifficultyArrow();
     }
     delDifficultyArrow();
@@ -41,13 +41,13 @@ function difficultySetActive(value) {
     if (difficultyActive != 2)
         setDifficultyMenuInactive(normalBox);
     if (difficultyActive != 3)
-        setDifficultyMenuInactive(hardBox);
-    if (difficultyActive != 4)
         setDifficultyMenuInactive(impossibleBox);
+    if (difficultyActive != 4)
+        setDifficultyMenuInactive(twoPlayer);
     easyBox === null || easyBox === void 0 ? void 0 : easyBox.classList.add('top1');
     normalBox === null || normalBox === void 0 ? void 0 : normalBox.classList.add('top1');
-    hardBox === null || hardBox === void 0 ? void 0 : hardBox.classList.add('top1');
     impossibleBox === null || impossibleBox === void 0 ? void 0 : impossibleBox.classList.add('top1');
+    twoPlayer === null || twoPlayer === void 0 ? void 0 : twoPlayer.classList.add('top1');
 }
 function setDifficultyArrow() {
     var tmp = document.getElementById("difficultyIco");
@@ -86,17 +86,20 @@ function settingMenuActive() {
 var counter = 0;
 var difficulty = difficultyActive;
 var tField = new Array(5, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+var round = 0;
 function tKlick(sender) {
     if (tField[sender.id] == 0) {
         tField[sender.id] = 1;
-        createSVG(true, sender.id);
-        //turnAI();
-        countLeftFields();
+        createSVG(false, sender.id);
+        round++;
+        if (difficulty != 4)
+            turnAI();
+        else
+            turnPlayer();
     }
-    //console.log(tField);
 }
 function createSVG(type, id) {
-    var linkCircle = "./svg/circle.svg#circle";
+    var linkCircle = "./svg/circle.svg#circleSVG1";
     var linkCross = "./svg/cross.svg#crossSVG1";
     var link = "http://www.w3.org/2000/svg";
     var svg = document.createElementNS(link, "svg");
@@ -105,7 +108,6 @@ function createSVG(type, id) {
         use.setAttribute('href', linkCircle);
     else if (!type)
         use.setAttribute('href', linkCross);
-    use.setAttribute('href', linkCross);
     svg.setAttribute('viewBox', '0 0 100 100');
     svg.setAttribute('class', 'generatedSVG');
     svg.appendChild(use);
@@ -113,9 +115,22 @@ function createSVG(type, id) {
 }
 function turnAI() {
     if (difficultyActive == 1) {
-        //getRandom();
-        //document.getElementById("");
+        var tmp = countLeftFields();
+        var tmpId = getRandom(tmp[0]);
+        //console.log(tmp[1][tmpId + 1]);
+        // console.log("tmp[1][tmpId]");
+        // console.log(tmp);
+        // console.log(tmp[1][(tmpId)]);
+        createSVG(true, tmp[1][(tmpId)]);
+        // console.log("tmpId AND STUFF");
+        // console.log(tmpId);
+        // console.log(tField[(tmpId)]);
+        // console.log(tField);
+        tField[tmp[1][(tmpId)]] = 1;
+        //console.log(tField);
     }
+}
+function turnPlayer() {
 }
 function countLeftFields() {
     var counter = 0;
@@ -131,12 +146,14 @@ function countLeftFields() {
         fieldCounter++;
     }
     ;
+    console.log("countLeftFields:");
+    console.log(returnArray);
     returnArray.push(counter);
     returnArray.push(fieldNumber);
     return returnArray;
 }
 function getRandom(max) {
-    return Math.floor(Math.random() * max);
+    return (Math.floor(Math.random() * max));
 }
 function findWinner() {
 }
