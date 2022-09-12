@@ -29,7 +29,6 @@ function difficultyMenuActive() {
 
       setDifficultyArrow();
    }
-
    delDifficultyArrow();
 }
 
@@ -44,6 +43,8 @@ function setDifficultyMenuInactive(value) {
 function difficultySetActive(value) {
 
    difficultyActive = value; //without validation !!!
+
+   clearField();
 
    if (difficultyActive != 1) setDifficultyMenuInactive(easyBox);
    if (difficultyActive != 2) setDifficultyMenuInactive(normalBox);
@@ -89,70 +90,51 @@ function settingMenuActive() {
 }
 
 //TicTacToe Stuff
-
-var counter: number = 0;
+var turnCounter: number = 0;
 var difficulty: number = difficultyActive;
 var tField: number[] = new Array(5, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-var round: number = 0;
+var pSkip: boolean = false
 
 function tKlick(sender: Element) {
-
-   if (tField[sender.id] == 0) {
-      tField[sender.id] = 1;
-      createSVG(false, sender.id);
-      round++;
-      if(difficulty != 4) turnAI();
-      else turnPlayer();
+   if (tField[sender.id] == null) {
+      if(pSkip){
+         turnPlayer(sender.id, false)
+         pSkip = false;
+      }
+      else if(!pSkip){
+         turnPlayer(sender.id, true);
+         if(difficultyActive != 4) turnAI();
+         else pSkip = true;
+      }
    }
+   if(turnCounter == 5) getWinner();
 }
 
-
-function createSVG(type: boolean, id) {
-   let linkCircle = "./svg/circle.svg#circleSVG1";
-   let linkCross = "./svg/cross.svg#crossSVG1";
-   let link: string = "http://www.w3.org/2000/svg";
-
-   let svg = document.createElementNS(link, "svg");
-   let use = document.createElementNS(link, "use");
-
-   if (type) use.setAttribute('href', linkCircle);
-   else if (!type) use.setAttribute('href', linkCross);
-   
-   
-   svg.setAttribute('viewBox', '0 0 100 100');
-   svg.setAttribute('class', 'generatedSVG');
-   svg.appendChild(use);
-   
-   document.getElementById(id).appendChild(svg);
+function turnPlayer(id, normal){
+   if(normal) {
+      createSVG(false, id);
+      tField[id] = 1;
+   }
+   else if(!normal){
+      createSVG(true, id);
+      tField[id] = 2;
+   }
+   turnCounter++;
 }
 
 function turnAI() {
-
-   if (difficultyActive == 1) {
-
+   if (difficultyActive == 1 && turnCounter != 9) {
       let tmp = countLeftFields();
       let tmpId = getRandom(tmp[0])
-      
-      //console.log(tmp[1][tmpId + 1]);
-      // console.log("tmp[1][tmpId]");
-      // console.log(tmp);
-      // console.log(tmp[1][(tmpId)]);
-      
+
+      //sleep function? or animation for AI?
+
       createSVG(true, tmp[1][(tmpId)]);
-      
-      // console.log("tmpId AND STUFF");
-      // console.log(tmpId);
-      // console.log(tField[(tmpId)]);
-      // console.log(tField);
-
-      tField[tmp[1][(tmpId)]] = 1;
-
-      //console.log(tField);
+      tField[tmp[1][(tmpId)]] = 2;
+      turnCounter++;
    }
-}
-
-function turnPlayer(){
-   
+   if (difficultyActive == 2){ /*...*/ }
+   if (difficultyActive == 3){ /*...*/ }
 }
 
 function countLeftFields() {
@@ -178,17 +160,51 @@ function countLeftFields() {
    return returnArray;
 }
 
+function getWinner() {
 
-function getRandom(max) {
-   return (Math.floor(Math.random() * max));
+   if (
+      tField[1] == tField[2] && tField[1] == tField[3] || 
+      tField[4] == tField[5] && tField[4] == tField[6] ||
+      tField[7] == tField[8] && tField[7] == tField[9] ||
 
-}
+      tField[1] == tField[4] && tField[1] == tField[7] ||
+      tField[2] == tField[5] && tField[2] == tField[8] ||
+      tField[3] == tField[6] && tField[3] == tField[9] ||
 
-function findWinner() {
-   
+      tField[1] == tField[5] && tField[1] == tField[9] ||
+      tField[3] == tField[5] && tField[3] == tField[7] 
+      
+      ) {
+         //won = true; 
+      }
 }
 
 function clearField(){
    document.querySelectorAll(".generatedSVG").forEach(e => e.remove());
    tField = [5, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+}
+
+
+function createSVG(type: boolean, id) {
+   let linkCircle = "./svg/circle.svg#circleSVG1";
+   let linkCross = "./svg/cross.svg#crossSVG1";
+   let link: string = "http://www.w3.org/2000/svg";
+
+   let svg = document.createElementNS(link, "svg");
+   let use = document.createElementNS(link, "use");
+
+   if (type) use.setAttribute('href', linkCircle);
+   else if (!type) use.setAttribute('href', linkCross);
+   
+   
+   svg.setAttribute('viewBox', '0 0 100 100');
+   svg.setAttribute('class', 'generatedSVG');
+   svg.appendChild(use);
+   
+   document.getElementById(id).appendChild(svg);
+}
+
+function getRandom(max) {
+   return (Math.floor(Math.random() * max));
+
 }

@@ -36,6 +36,7 @@ function setDifficultyMenuInactive(value) {
 }
 function difficultySetActive(value) {
     difficultyActive = value; //without validation !!!
+    clearField();
     if (difficultyActive != 1)
         setDifficultyMenuInactive(easyBox);
     if (difficultyActive != 2)
@@ -83,54 +84,49 @@ function settingMenuActive() {
     settingOptions === null || settingOptions === void 0 ? void 0 : settingOptions.classList.toggle("hide");
 }
 //TicTacToe Stuff
-var counter = 0;
+var turnCounter = 0;
 var difficulty = difficultyActive;
 var tField = new Array(5, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-var round = 0;
+var pSkip = false;
 function tKlick(sender) {
-    if (tField[sender.id] == 0) {
-        tField[sender.id] = 1;
-        createSVG(false, sender.id);
-        round++;
-        if (difficulty != 4)
-            turnAI();
-        else
-            turnPlayer();
+    if (tField[sender.id] == null) {
+        if (pSkip) {
+            turnPlayer(sender.id, false);
+            pSkip = false;
+        }
+        else if (!pSkip) {
+            turnPlayer(sender.id, true);
+            if (difficultyActive != 4)
+                turnAI();
+            else
+                pSkip = true;
+        }
     }
+    if (turnCounter == 5)
+        getWinner();
 }
-function createSVG(type, id) {
-    var linkCircle = "./svg/circle.svg#circleSVG1";
-    var linkCross = "./svg/cross.svg#crossSVG1";
-    var link = "http://www.w3.org/2000/svg";
-    var svg = document.createElementNS(link, "svg");
-    var use = document.createElementNS(link, "use");
-    if (type)
-        use.setAttribute('href', linkCircle);
-    else if (!type)
-        use.setAttribute('href', linkCross);
-    svg.setAttribute('viewBox', '0 0 100 100');
-    svg.setAttribute('class', 'generatedSVG');
-    svg.appendChild(use);
-    document.getElementById(id).appendChild(svg);
+function turnPlayer(id, normal) {
+    if (normal) {
+        createSVG(false, id);
+        tField[id] = 1;
+    }
+    else if (!normal) {
+        createSVG(true, id);
+        tField[id] = 2;
+    }
+    turnCounter++;
 }
 function turnAI() {
-    if (difficultyActive == 1) {
+    if (difficultyActive == 1 && turnCounter != 9) {
         var tmp = countLeftFields();
         var tmpId = getRandom(tmp[0]);
-        //console.log(tmp[1][tmpId + 1]);
-        // console.log("tmp[1][tmpId]");
-        // console.log(tmp);
-        // console.log(tmp[1][(tmpId)]);
+        //sleep function? or animation for AI?
         createSVG(true, tmp[1][(tmpId)]);
-        // console.log("tmpId AND STUFF");
-        // console.log(tmpId);
-        // console.log(tField[(tmpId)]);
-        // console.log(tField);
-        tField[tmp[1][(tmpId)]] = 1;
-        //console.log(tField);
+        tField[tmp[1][(tmpId)]] = 2;
+        turnCounter++;
     }
-}
-function turnPlayer() {
+    if (difficultyActive == 2) { /*...*/ }
+    if (difficultyActive == 3) { /*...*/ }
 }
 function countLeftFields() {
     var counter = 0;
@@ -152,12 +148,37 @@ function countLeftFields() {
     returnArray.push(fieldNumber);
     return returnArray;
 }
-function getRandom(max) {
-    return (Math.floor(Math.random() * max));
-}
-function findWinner() {
+function getWinner() {
+    if (tField[1] == tField[2] && tField[1] == tField[3] ||
+        tField[4] == tField[5] && tField[4] == tField[6] ||
+        tField[7] == tField[8] && tField[7] == tField[9] ||
+        tField[1] == tField[4] && tField[1] == tField[7] ||
+        tField[2] == tField[5] && tField[2] == tField[8] ||
+        tField[3] == tField[6] && tField[3] == tField[9] ||
+        tField[1] == tField[5] && tField[1] == tField[9] ||
+        tField[3] == tField[5] && tField[3] == tField[7]) {
+        //won = true; 
+    }
 }
 function clearField() {
     document.querySelectorAll(".generatedSVG").forEach(function (e) { return e.remove(); });
     tField = [5, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+}
+function createSVG(type, id) {
+    var linkCircle = "./svg/circle.svg#circleSVG1";
+    var linkCross = "./svg/cross.svg#crossSVG1";
+    var link = "http://www.w3.org/2000/svg";
+    var svg = document.createElementNS(link, "svg");
+    var use = document.createElementNS(link, "use");
+    if (type)
+        use.setAttribute('href', linkCircle);
+    else if (!type)
+        use.setAttribute('href', linkCross);
+    svg.setAttribute('viewBox', '0 0 100 100');
+    svg.setAttribute('class', 'generatedSVG');
+    svg.appendChild(use);
+    document.getElementById(id).appendChild(svg);
+}
+function getRandom(max) {
+    return (Math.floor(Math.random() * max));
 }
