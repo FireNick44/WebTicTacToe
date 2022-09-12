@@ -7,7 +7,6 @@ var easyBox = document.getElementById("easyBox");
 var normalBox = document.getElementById("normalBox");
 var hardBox = document.getElementById("hardBox");
 var impossibleBox = document.getElementById("impossibleBox");
-var twoPlayerBox = document.getElementById("twoPlayerBox");
 //difficulty Stuff
 function difficultyMenuActive() {
     if (difficultyWindowActive)
@@ -19,12 +18,10 @@ function difficultyMenuActive() {
         setDifficultyMenuActive(normalBox);
         setDifficultyMenuActive(hardBox);
         setDifficultyMenuActive(impossibleBox);
-        setDifficultyMenuActive(twoPlayerBox);
         easyBox === null || easyBox === void 0 ? void 0 : easyBox.classList.remove('top1');
         normalBox === null || normalBox === void 0 ? void 0 : normalBox.classList.remove('top1');
         hardBox === null || hardBox === void 0 ? void 0 : hardBox.classList.remove('top1');
         impossibleBox === null || impossibleBox === void 0 ? void 0 : impossibleBox.classList.remove('top1');
-        twoPlayerBox === null || twoPlayerBox === void 0 ? void 0 : twoPlayerBox.classList.remove('top1');
         setDifficultyArrow();
     }
     delDifficultyArrow();
@@ -47,13 +44,10 @@ function difficultySetActive(value) {
         setDifficultyMenuInactive(hardBox);
     if (difficultyActive != 4)
         setDifficultyMenuInactive(impossibleBox);
-    if (difficultyActive != 5)
-        setDifficultyMenuInactive(twoPlayerBox);
     easyBox === null || easyBox === void 0 ? void 0 : easyBox.classList.add('top1');
     normalBox === null || normalBox === void 0 ? void 0 : normalBox.classList.add('top1');
     hardBox === null || hardBox === void 0 ? void 0 : hardBox.classList.add('top1');
     impossibleBox === null || impossibleBox === void 0 ? void 0 : impossibleBox.classList.add('top1');
-    twoPlayerBox === null || twoPlayerBox === void 0 ? void 0 : twoPlayerBox.classList.add('top1');
 }
 function setDifficultyArrow() {
     var tmp = document.getElementById("difficultyIco");
@@ -63,8 +57,6 @@ function setDifficultyArrow() {
         tmp === null || tmp === void 0 ? void 0 : tmp.classList.add('top3');
     else if (difficultyActive == 4)
         tmp === null || tmp === void 0 ? void 0 : tmp.classList.add('top4');
-    else if (difficultyActive == 5)
-        tmp === null || tmp === void 0 ? void 0 : tmp.classList.add('top5');
 }
 function delDifficultyArrow() {
     var tmp = document.getElementById("difficultyIco");
@@ -74,8 +66,6 @@ function delDifficultyArrow() {
         tmp === null || tmp === void 0 ? void 0 : tmp.classList.remove('top3');
     else if (difficultyActive == 4)
         tmp === null || tmp === void 0 ? void 0 : tmp.classList.remove('top4');
-    else if (difficultyActive == 5)
-        tmp === null || tmp === void 0 ? void 0 : tmp.classList.remove('top5');
 }
 //setting Stuff
 function settingMenuActive() {
@@ -95,15 +85,17 @@ function settingMenuActive() {
 //TicTacToe Stuff
 var counter = 0;
 var difficulty = difficultyActive;
-var tField = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+var tField = new Array(5, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 function tKlick(sender) {
     if (tField[sender.id] == 0) {
         tField[sender.id] = 1;
-        createSVG(true, sender);
+        createSVG(true, sender.id);
+        //turnAI();
+        countLeftFields();
     }
-    console.log(tField);
+    //console.log(tField);
 }
-function createSVG(type, sender) {
+function createSVG(type, id) {
     var linkCircle = "./svg/circle.svg#circle";
     var linkCross = "./svg/cross.svg#crossSVG1";
     var link = "http://www.w3.org/2000/svg";
@@ -115,6 +107,40 @@ function createSVG(type, sender) {
         use.setAttribute('href', linkCross);
     use.setAttribute('href', linkCross);
     svg.setAttribute('viewBox', '0 0 100 100');
+    svg.setAttribute('class', 'generatedSVG');
     svg.appendChild(use);
-    document.getElementById(sender.id).appendChild(svg);
+    document.getElementById(id).appendChild(svg);
+}
+function turnAI() {
+    if (difficultyActive == 1) {
+        //getRandom();
+        //document.getElementById("");
+    }
+}
+function countLeftFields() {
+    var counter = 0;
+    var fieldCounter = 0;
+    var fieldNumber = new Array();
+    var returnArray = new Array();
+    for (var _i = 0, tField_1 = tField; _i < tField_1.length; _i++) {
+        var field = tField_1[_i];
+        if (field == 0) {
+            counter++;
+            fieldNumber.push(fieldCounter);
+        }
+        fieldCounter++;
+    }
+    ;
+    returnArray.push(counter);
+    returnArray.push(fieldNumber);
+    return returnArray;
+}
+function getRandom(max) {
+    return Math.floor(Math.random() * max);
+}
+function findWinner() {
+}
+function clearField() {
+    document.querySelectorAll(".generatedSVG").forEach(function (e) { return e.remove(); });
+    tField = [5, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 }

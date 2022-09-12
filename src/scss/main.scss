@@ -1,9 +1,9 @@
-*{
+* {
    margin: 0px;
    padding: 0px;
 }
 
-body{
+body {
    font-family: "BerlinType", monospace;
    font-variation-settings: "wght" 400, "wdth" 100;
    font-size: 1.1rem;
@@ -14,15 +14,15 @@ body{
    width: 100%;
    height: 100%;
 
-   background: linear-gradient(140.54deg, #018560 0%, #231717 72.37%), 
-               linear-gradient(58.72deg, #0029FF 0%, #8FFF00 100%),
-               radial-gradient(100% 164.72% at 100% 100%, #6100FF 0%, #00FF57 100%),
-               radial-gradient(100% 148.07% at 0% 0%, #FFF500 0%, #4cc900 100%);
+   background: linear-gradient(140.54deg, #018560 0%, #231717 72.37%),
+      linear-gradient(58.72deg, #0029FF 0%, #8FFF00 100%),
+      radial-gradient(100% 164.72% at 100% 100%, #6100FF 0%, #00FF57 100%),
+      radial-gradient(100% 148.07% at 0% 0%, #FFF500 0%, #4cc900 100%);
 
    background-blend-mode: color-dodge, overlay, difference, normal;
 }
 
-html{
+html {
    box-sizing: border-box;
    text-rendering: optimizeLegibility;
    scroll-behavior: smooth;
@@ -30,14 +30,14 @@ html{
    height: 100%;
 }
 
-@font-face{
+@font-face {
    font-family: BerlinType;
    src: url(/src/font/BerlinTypeWeb-Regular.woff2) format("truetype");
    font-weight: 200 100;
    font-style: normal;
 }
 
-nav{
+nav {
    position: absolute;
    top: 0;
    left: 0;
@@ -50,43 +50,43 @@ nav{
    z-index: 10;
 }
 
-button{
+button {
    border: none;
    height: 100%;
    width: 100%;
    padding: 8px;
 }
 
-button#1{
+.cardT > .btn:nth-child(1){
    border-radius: 8px 0px 0px 0px;
 }
 
-button#3{
+.cardT > .btn:nth-child(3){
    border-radius: 0px 8px 0px 0px;
 }
 
-button#7{
+.cardT > .btn:nth-child(7){
    border-radius: 0px 0px 0px 8px;
 }
 
-button#9{
+.cardT > .btn:nth-child(9){
    border-radius: 0px 0px 8px 0px;
 }
 
-.info{
+.info {
    margin: 30px;
 }
 
-.hide{
+.hide {
    visibility: hidden;
    transition: all 0.4s;
 }
 
-.visible{
+.visible {
    visibility: visible;
 }
 
-.difficultyBox{
+.difficultyBox {
    overflow: hidden;
    position: absolute;
    left: 10px;
@@ -95,12 +95,12 @@ button#9{
    cursor: pointer;
 }
 
-.difficultySelection{
+.difficultySelection {
    height: 100%;
    width: 100%;
 }
 
-.difficultyIco{
+.difficultyIco {
    position: absolute;
    top: 12px;
    left: 5px;
@@ -108,47 +108,39 @@ button#9{
    transition: all 0.3s ease-in-out;
 }
 
-div#easyBox:hover ~ .difficultyIco{
+div#easyBox:hover~.difficultyIco {
    top: 12px;
 }
 
-div#normalBox:hover ~ .difficultyIco{
+div#normalBox:hover~.difficultyIco {
    top: 37px;
 }
 
-div#hardBox:hover ~ .difficultyIco{
+div#hardBox:hover~.difficultyIco {
    top: 62px;
 }
 
-div#impossibleBox:hover ~ .difficultyIco{
+div#impossibleBox:hover~.difficultyIco {
    top: 87px;
 }
 
-div#twoPlayerBox:hover ~ .difficultyIco{
-   top: 112px;
-}
-
-.top1{
+.top1 {
    pointer-events: none;
 }
 
-.top2{
+.top2 {
    top: 37px;
 }
 
-.top3{
+.top3 {
    top: 62px;
 }
 
-.top4{
+.top4 {
    top: 87px;
 }
 
-.top5{
-   top: 112px;
-}
-
-.settingBox{
+.settingBox {
    position: absolute;
    right: 10px;
    height: 24px;
@@ -158,7 +150,7 @@ div#twoPlayerBox:hover ~ .difficultyIco{
    overflow: hidden;
 }
 
-.settingIco{
+.settingIco {
    position: absolute;
    right: 7px;
    top: 7px;
@@ -168,22 +160,22 @@ div#twoPlayerBox:hover ~ .difficultyIco{
    transition: all 0.8s;
 }
 
-.settingBoxOpen{
+.settingBoxOpen {
    height: 122px;
    width: 140px;
 }
 
-.settingIcoOpen{
+.settingIcoOpen {
    transform: rotate(90deg);
 }
 
-.settingOptions{
+.settingOptions {
    display: flex;
    flex-direction: column;
    margin-top: 10px;
 }
 
-.centerNav{
+.centerNav {
    position: relative;
    width: 100%;
    margin-top: 40px;
@@ -192,7 +184,7 @@ div#twoPlayerBox:hover ~ .difficultyIco{
    align-items: center;
 }
 
-.center{
+.center {
    width: 100%;
    height: calc(100% - 45px);
    display: flex;
@@ -201,14 +193,14 @@ div#twoPlayerBox:hover ~ .difficultyIco{
    align-items: center;
 }
 
-.card{
+.card {
    backdrop-filter: blur(4px) saturate(170%);
    background-color: rgba(255, 255, 255, 0.65);
    border-radius: 12px;
    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.Tcard{
+.cardT {
    display: grid;
    grid-template-columns: 70px 70px 70px;
    grid-template-rows: 70px 70px 70px;
@@ -219,15 +211,16 @@ div#twoPlayerBox:hover ~ .difficultyIco{
    width: auto;
 }
 
-.btnEvents{
+.btnEvents {
    margin-top: 30px;
    padding: 15px 32px;
    border: none;
    border-radius: 8px;
    height: 50px;
    width: 100px;
+   cursor: pointer;
 }
 
-.fill{
+.fill {
    fill: black;
 }

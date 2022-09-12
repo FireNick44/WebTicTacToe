@@ -40,7 +40,6 @@ nav {
   margin-right: auto;
   padding: 10px;
   width: calc(70% - 20px);
-  height: 200px;
   z-index: 10;
 }
 
@@ -51,19 +50,19 @@ button {
   padding: 8px;
 }
 
-button#b1 {
+.cardT > .btn:nth-child(1) {
   border-radius: 8px 0px 0px 0px;
 }
 
-button#b3 {
+.cardT > .btn:nth-child(3) {
   border-radius: 0px 8px 0px 0px;
 }
 
-button#b7 {
+.cardT > .btn:nth-child(7) {
   border-radius: 0px 0px 0px 8px;
 }
 
-button#b9 {
+.cardT > .btn:nth-child(9) {
   border-radius: 0px 0px 8px 0px;
 }
 
@@ -118,10 +117,6 @@ div#impossibleBox:hover ~ .difficultyIco {
   top: 87px;
 }
 
-div#twoPlayerBox:hover ~ .difficultyIco {
-  top: 112px;
-}
-
 .top1 {
   pointer-events: none;
 }
@@ -136,10 +131,6 @@ div#twoPlayerBox:hover ~ .difficultyIco {
 
 .top4 {
   top: 87px;
-}
-
-.top5 {
-  top: 112px;
 }
 
 .settingBox {
@@ -203,7 +194,7 @@ div#twoPlayerBox:hover ~ .difficultyIco {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.Tcard {
+.cardT {
   display: grid;
   grid-template-columns: 70px 70px 70px;
   grid-template-rows: 70px 70px 70px;
@@ -222,6 +213,7 @@ div#twoPlayerBox:hover ~ .difficultyIco {
   border-radius: 8px;
   height: 50px;
   width: 100px;
+  cursor: pointer;
 }
 
 .fill {

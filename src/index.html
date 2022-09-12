@@ -29,9 +29,6 @@
             <div id="impossibleBox" class="hide" onclick="difficultySetActive(4)">
                Unmöglich
             </div>
-            <div id="twoPlayerBox" class="hide" onclick="difficultySetActive(5)">
-               Mehrspieler
-            </div>
             <svg id="difficultyIco" class="difficultyIco" viewBox="0 0 100 100">
                <use xlink:href="./svg/selectArrow.svg#1"></use>
             </svg>
@@ -53,18 +50,18 @@
       <div class="infoBord">
          <p id="info" class="info">Klicke auf ein Feld, um zu beginnen</p>
       </div>
-      <div class="card Tcard">
-         <button id="1" onclick="tKlick(this)"></button>
-         <button id="2" onclick="tKlick(this)"></button>
-         <button id="3" onclick="tKlick(this)"></button>
-         <button id="4" onclick="tKlick(this)"></button>
-         <button id="5" onclick="tKlick(this)"></button>
-         <button id="6" onclick="tKlick(this)"></button>
-         <button id="7" onclick="tKlick(this)"></button>
-         <button id="8" onclick="tKlick(this)"></button>
-         <button id="9" onclick="tKlick(this)"></button>
+      <div class="card cardT">
+         <button id="1" class="btn" onclick="tKlick(this)"></button>
+         <button id="2" class="btn" onclick="tKlick(this)"></button>
+         <button id="3" class="btn" onclick="tKlick(this)"></button>
+         <button id="4" class="btn" onclick="tKlick(this)"></button>
+         <button id="5" class="btn" onclick="tKlick(this)"></button>
+         <button id="6" class="btn" onclick="tKlick(this)"></button>
+         <button id="7" class="btn" onclick="tKlick(this)"></button>
+         <button id="8" class="btn" onclick="tKlick(this)"></button>
+         <button id="9" class="btn" onclick="tKlick(this)"></button>
       </div>
-      <button class="btnEvents card">Start</button>
+      <button class="btnEvents card" onclick="clearField()">Start</button>
    </div>
    <script src="./ts/TicTacToe.js"></script>
 </body>
