@@ -163,6 +163,7 @@ function getWinner() {
 function clearField() {
     document.querySelectorAll(".generatedSVG").forEach(function (e) { return e.remove(); });
     tField = [5, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    turnCounter = 0;
 }
 function createSVG(type, id) {
     var linkCircle = "./svg/circle.svg#circleSVG1";

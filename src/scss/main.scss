@@ -225,3 +225,19 @@ div#twoPlayer:hover~.difficultyIco {
 .fill {
    fill: black;
 }
+
+.winnLine{
+   position: absolute;
+   top: 125px;
+   left: 0px;
+   right: 0px;
+   margin: auto;
+   height: 10px;
+   width: 250px;
+   background-color: #c90b0b;
+   z-index: 10;
+}
+
+.winnFirst{
+   top: 45px;
+}
