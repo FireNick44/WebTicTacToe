@@ -45,37 +45,86 @@ nav {
    margin-left: auto;
    margin-right: auto;
    padding: 10px;
-   //max-width: 600px;
    width: calc(70% - 20px);
    z-index: 10;
+
+   .difficultyBox {
+      overflow: hidden;
+      position: absolute;
+      left: 10px;
+      padding: 6px 15px 6px 22px;
+      transition: all 0.4s;
+      cursor: pointer;
+
+      .difficultySelection {
+         height: 100%;
+         width: 100%;
+
+         #easyBox:hover~.difficultyIco {
+            top: 12px;
+         }
+         
+         #normalBox:hover~.difficultyIco {
+            top: 37px;
+         }
+         
+         #impossibleBox:hover~.difficultyIco {
+            top: 62px;
+         }
+         
+         #twoPlayer:hover~.difficultyIco {
+            top: 87px;
+         }
+
+         .difficultyIco {
+            position: absolute;
+            top: 12px;
+            left: 5px;
+            height: 12px;
+            transition: all 0.3s ease-in-out;
+         }
+      }
+   }
+
+   .settingBox {
+      position: absolute;
+      right: 10px;
+      height: 24px;
+      width: 24px;
+      padding: 6px;
+      transition: all 0.4s;
+      overflow: hidden;
+
+      &.settingBoxOpen {
+         height: 122px;
+         width: 140px;
+      }
+
+      .settingOptions {
+         display: flex;
+         flex-direction: column;
+         margin-top: 10px;
+      }
+
+      .settingIco {
+         position: absolute;
+         right: 7px;
+         top: 7px;
+         height: 22px;
+         width: 22px;
+         cursor: pointer;
+         transition: all 0.8s;
+
+         &.settingIcoOpen {
+            transform: rotate(90deg);
+         }
+      }
+   }
 }
 
-button {
-   border: none;
-   height: 100%;
-   width: 100%;
-   padding: 8px;
-}
 
-.cardT > .btn:nth-child(1){
-   border-radius: 8px 0px 0px 0px;
-}
 
-.cardT > .btn:nth-child(3){
-   border-radius: 0px 8px 0px 0px;
-}
 
-.cardT > .btn:nth-child(7){
-   border-radius: 0px 0px 0px 8px;
-}
-
-.cardT > .btn:nth-child(9){
-   border-radius: 0px 0px 8px 0px;
-}
-
-.info {
-   margin: 30px;
-}
 
 .hide {
    visibility: hidden;
@@ -86,43 +135,7 @@ button {
    visibility: visible;
 }
 
-.difficultyBox {
-   overflow: hidden;
-   position: absolute;
-   left: 10px;
-   padding: 6px 15px 6px 22px;
-   transition: all 0.4s;
-   cursor: pointer;
-}
 
-.difficultySelection {
-   height: 100%;
-   width: 100%;
-}
-
-.difficultyIco {
-   position: absolute;
-   top: 12px;
-   left: 5px;
-   height: 12px;
-   transition: all 0.3s ease-in-out;
-}
-
-div#easyBox:hover~.difficultyIco {
-   top: 12px;
-}
-
-div#normalBox:hover~.difficultyIco {
-   top: 37px;
-}
-
-div#impossibleBox:hover~.difficultyIco {
-   top: 62px;
-}
-
-div#twoPlayer:hover~.difficultyIco {
-   top: 87px;
-}
 
 .top1 {
    pointer-events: none;
@@ -140,50 +153,6 @@ div#twoPlayer:hover~.difficultyIco {
    top: 87px;
 }
 
-.settingBox {
-   position: absolute;
-   right: 10px;
-   height: 24px;
-   width: 24px;
-   padding: 6px;
-   transition: all 0.4s;
-   overflow: hidden;
-}
-
-.settingIco {
-   position: absolute;
-   right: 7px;
-   top: 7px;
-   height: 22px;
-   width: 22px;
-   cursor: pointer;
-   transition: all 0.8s;
-}
-
-.settingBoxOpen {
-   height: 122px;
-   width: 140px;
-}
-
-.settingIcoOpen {
-   transform: rotate(90deg);
-}
-
-.settingOptions {
-   display: flex;
-   flex-direction: column;
-   margin-top: 10px;
-}
-
-.centerNav {
-   position: relative;
-   width: 100%;
-   margin-top: 40px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
 .center {
    width: 100%;
    height: calc(100% - 45px);
@@ -191,53 +160,119 @@ div#twoPlayer:hover~.difficultyIco {
    justify-content: center;
    flex-direction: column;
    align-items: center;
+
+   .cardT {
+      position: relative;
+      display: grid;
+      grid-template-columns: 70px 70px 70px;
+      grid-template-rows: 70px 70px 70px;
+      row-gap: 10px;
+      column-gap: 10px;
+      padding: 15px;
+      height: auto;
+      width: auto;
+
+      .btn{
+         border: none;
+         height: 100%;
+         width: 100%;
+         padding: 8px;
+      }
+
+      >.btn:nth-child(1) {
+         border-radius: 8px 0px 0px 0px;
+      }
+
+      >.btn:nth-child(3) {
+         border-radius: 0px 8px 0px 0px;
+      }
+
+      >.btn:nth-child(7) {
+         border-radius: 0px 0px 0px 8px;
+      }
+
+      >.btn:nth-child(9) {
+         border-radius: 0px 0px 8px 0px;
+      }
+
+
+      .winnLine {
+         position: absolute;
+         margin: auto;
+         height: 10px;
+         width: 250px;
+         background-color: #c90b0bd9;
+         z-index: 10;
+         display: none;
+
+         &.column1{
+            top: 45px;
+            left: 0px;
+            right: 0px;
+            display: block;
+         }
+         &.column2{
+            top: 125px;
+            left: 0px;
+            right: 0px;
+            display: block;
+         }
+         &.column3{
+            top: 205px;
+            left: 0px;
+            right: 0px;
+            display: block;
+         }
+         &.row1{
+            top: 125px;
+            left: -75px;
+            rotate: 90deg;
+            display: block;
+         }
+         &.row2{
+            top: 125px;
+            left: 5px;
+            rotate: 90deg;
+            display: block;
+         }
+         &.row3{
+            top: 125px;
+            left: 85px;
+            rotate: 90deg;
+            display: block;
+         }
+         &.diagonal1{
+            top: 125px;
+            left: -40px;
+            rotate: 45deg;
+            display: block;
+            width: 340px;
+         }
+         &.diagonal2{
+            top: 125px;
+            left: -40px;
+            rotate: 135deg;
+            display: block;
+            width: 340px;
+         }
+      }
+   }
+
+   .btnEvents {
+      margin-top: 30px;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      width: 265px;
+      cursor: pointer;
+   }
 }
 
 .card {
    backdrop-filter: blur(4px) saturate(170%);
    background-color: rgba(255, 255, 255, 0.65);
    border-radius: 12px;
-   border: 1px solid rgba(255, 255, 255, 0.3);
+   border: 2.5px solid rgba(255, 255, 255, 0.3);
 }
 
-.cardT {
-   position: relative;
-   display: grid;
-   grid-template-columns: 70px 70px 70px;
-   grid-template-rows: 70px 70px 70px;
-   row-gap: 10px;
-   column-gap: 10px;
-   padding: 15px;
-   height: auto;
-   width: auto;
-}
 
-.btnEvents {
-   margin-top: 30px;
-   padding: 15px 32px;
-   border: none;
-   border-radius: 8px;
-   height: 50px;
-   width: 100px;
-   cursor: pointer;
-}
-
-.fill {
-   fill: black;
-}
-
-.winnLine{
-   position: absolute;
-   top: 125px;
-   left: 0px;
-   right: 0px;
-   margin: auto;
-   height: 10px;
-   width: 250px;
-   background-color: #c90b0b;
-   z-index: 10;
-}
-
-.winnFirst{
-   top: 45px;
-}

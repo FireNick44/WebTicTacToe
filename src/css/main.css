@@ -42,32 +42,66 @@ nav {
   width: calc(70% - 20px);
   z-index: 10;
 }
-
-button {
-  border: none;
+nav .difficultyBox {
+  overflow: hidden;
+  position: absolute;
+  left: 10px;
+  padding: 6px 15px 6px 22px;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+nav .difficultyBox .difficultySelection {
   height: 100%;
   width: 100%;
-  padding: 8px;
 }
-
-.cardT > .btn:nth-child(1) {
-  border-radius: 8px 0px 0px 0px;
+nav .difficultyBox .difficultySelection #easyBox:hover ~ .difficultyIco {
+  top: 12px;
 }
-
-.cardT > .btn:nth-child(3) {
-  border-radius: 0px 8px 0px 0px;
+nav .difficultyBox .difficultySelection #normalBox:hover ~ .difficultyIco {
+  top: 37px;
 }
-
-.cardT > .btn:nth-child(7) {
-  border-radius: 0px 0px 0px 8px;
+nav .difficultyBox .difficultySelection #impossibleBox:hover ~ .difficultyIco {
+  top: 62px;
 }
-
-.cardT > .btn:nth-child(9) {
-  border-radius: 0px 0px 8px 0px;
+nav .difficultyBox .difficultySelection #twoPlayer:hover ~ .difficultyIco {
+  top: 87px;
 }
-
-.info {
-  margin: 30px;
+nav .difficultyBox .difficultySelection .difficultyIco {
+  position: absolute;
+  top: 12px;
+  left: 5px;
+  height: 12px;
+  transition: all 0.3s ease-in-out;
+}
+nav .settingBox {
+  position: absolute;
+  right: 10px;
+  height: 24px;
+  width: 24px;
+  padding: 6px;
+  transition: all 0.4s;
+  overflow: hidden;
+}
+nav .settingBox.settingBoxOpen {
+  height: 122px;
+  width: 140px;
+}
+nav .settingBox .settingOptions {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+nav .settingBox .settingIco {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  height: 22px;
+  width: 22px;
+  cursor: pointer;
+  transition: all 0.8s;
+}
+nav .settingBox .settingIco.settingIcoOpen {
+  transform: rotate(90deg);
 }
 
 .hide {
@@ -77,44 +111,6 @@ button {
 
 .visible {
   visibility: visible;
-}
-
-.difficultyBox {
-  overflow: hidden;
-  position: absolute;
-  left: 10px;
-  padding: 6px 15px 6px 22px;
-  transition: all 0.4s;
-  cursor: pointer;
-}
-
-.difficultySelection {
-  height: 100%;
-  width: 100%;
-}
-
-.difficultyIco {
-  position: absolute;
-  top: 12px;
-  left: 5px;
-  height: 12px;
-  transition: all 0.3s ease-in-out;
-}
-
-div#easyBox:hover ~ .difficultyIco {
-  top: 12px;
-}
-
-div#normalBox:hover ~ .difficultyIco {
-  top: 37px;
-}
-
-div#impossibleBox:hover ~ .difficultyIco {
-  top: 62px;
-}
-
-div#twoPlayer:hover ~ .difficultyIco {
-  top: 87px;
 }
 
 .top1 {
@@ -133,50 +129,6 @@ div#twoPlayer:hover ~ .difficultyIco {
   top: 87px;
 }
 
-.settingBox {
-  position: absolute;
-  right: 10px;
-  height: 24px;
-  width: 24px;
-  padding: 6px;
-  transition: all 0.4s;
-  overflow: hidden;
-}
-
-.settingIco {
-  position: absolute;
-  right: 7px;
-  top: 7px;
-  height: 22px;
-  width: 22px;
-  cursor: pointer;
-  transition: all 0.8s;
-}
-
-.settingBoxOpen {
-  height: 122px;
-  width: 140px;
-}
-
-.settingIcoOpen {
-  transform: rotate(90deg);
-}
-
-.settingOptions {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-}
-
-.centerNav {
-  position: relative;
-  width: 100%;
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .center {
   width: 100%;
   height: calc(100% - 45px);
@@ -185,16 +137,7 @@ div#twoPlayer:hover ~ .difficultyIco {
   flex-direction: column;
   align-items: center;
 }
-
-.card {
-  -webkit-backdrop-filter: blur(4px) saturate(170%);
-          backdrop-filter: blur(4px) saturate(170%);
-  background-color: rgba(255, 255, 255, 0.65);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.cardT {
+.center .cardT {
   position: relative;
   display: grid;
   grid-template-columns: 70px 70px 70px;
@@ -206,33 +149,96 @@ div#twoPlayer:hover ~ .difficultyIco {
   height: auto;
   width: auto;
 }
-
-.btnEvents {
-  margin-top: 30px;
-  padding: 15px 32px;
+.center .cardT .btn {
   border: none;
-  border-radius: 8px;
-  height: 50px;
-  width: 100px;
-  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  padding: 8px;
 }
-
-.fill {
-  fill: black;
+.center .cardT > .btn:nth-child(1) {
+  border-radius: 8px 0px 0px 0px;
 }
-
-.winnLine {
+.center .cardT > .btn:nth-child(3) {
+  border-radius: 0px 8px 0px 0px;
+}
+.center .cardT > .btn:nth-child(7) {
+  border-radius: 0px 0px 0px 8px;
+}
+.center .cardT > .btn:nth-child(9) {
+  border-radius: 0px 0px 8px 0px;
+}
+.center .cardT .winnLine {
   position: absolute;
-  top: 125px;
-  left: 0px;
-  right: 0px;
   margin: auto;
   height: 10px;
   width: 250px;
-  background-color: #c90b0b;
+  background-color: rgba(201, 11, 11, 0.8509803922);
   z-index: 10;
+  display: none;
+}
+.center .cardT .winnLine.column1 {
+  top: 45px;
+  left: 0px;
+  right: 0px;
+  display: block;
+}
+.center .cardT .winnLine.column2 {
+  top: 125px;
+  left: 0px;
+  right: 0px;
+  display: block;
+}
+.center .cardT .winnLine.column3 {
+  top: 205px;
+  left: 0px;
+  right: 0px;
+  display: block;
+}
+.center .cardT .winnLine.row1 {
+  top: 125px;
+  left: -75px;
+  rotate: 90deg;
+  display: block;
+}
+.center .cardT .winnLine.row2 {
+  top: 125px;
+  left: 5px;
+  rotate: 90deg;
+  display: block;
+}
+.center .cardT .winnLine.row3 {
+  top: 125px;
+  left: 85px;
+  rotate: 90deg;
+  display: block;
+}
+.center .cardT .winnLine.diagonal1 {
+  top: 125px;
+  left: -40px;
+  rotate: 45deg;
+  display: block;
+  width: 340px;
+}
+.center .cardT .winnLine.diagonal2 {
+  top: 125px;
+  left: -40px;
+  rotate: 135deg;
+  display: block;
+  width: 340px;
+}
+.center .btnEvents {
+  margin-top: 30px;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  width: 265px;
+  cursor: pointer;
 }
 
-.winnFirst {
-  top: 45px;
+.card {
+  -webkit-backdrop-filter: blur(4px) saturate(170%);
+          backdrop-filter: blur(4px) saturate(170%);
+  background-color: rgba(255, 255, 255, 0.65);
+  border-radius: 12px;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
 }/*# sourceMappingURL=main.css.map */

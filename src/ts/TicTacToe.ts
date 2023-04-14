@@ -32,15 +32,15 @@ function difficultyMenuActive() {
    delDifficultyArrow();
 }
 
-function setDifficultyMenuActive(value) {
+function setDifficultyMenuActive(value: any) {
    if (value?.classList.contains('hide')) value.classList.remove('hide');
 }
 
-function setDifficultyMenuInactive(value) {
+function setDifficultyMenuInactive(value: any) {
    if (!value?.classList.contains('hide')) value.classList.add('hide');
 }
 
-function difficultySetActive(value) {
+function difficultySetActive(value: number) {
 
    difficultyActive = value; //without validation !!!
 
@@ -93,29 +93,33 @@ function settingMenuActive() {
 var turnCounter: number = 0;
 var difficulty: number = difficultyActive;
 var tField: number[] = new Array(5, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-var pSkip: boolean = false
+var pSkip: boolean = false;
+var gameOver: boolean = false;
 
-function tKlick(sender: Element) {
-   if (tField[sender.id] == 0) {
-      if(pSkip){
+function tKlick(sender: any) {
+   if (tField[sender.id] == 0 && !gameOver) {
+      console.log("es gibt kein gewinner")
+      if (pSkip) {
          turnPlayer(sender.id, false)
          pSkip = false;
       }
-      else if(!pSkip){
+      else if (!pSkip) {
+         console.log(gameOver);
          turnPlayer(sender.id, true);
-         if(difficultyActive != 4) turnAI();
-         else pSkip = true;
+         if (difficultyActive != 4) turnAI();
+         //else pSkip = true;
       }
    }
-   if(turnCounter == 5) getWinner();
+   if (turnCounter >= 4) getWinner();
+   btnStatusUpdate();
 }
 
-function turnPlayer(id, normal){
-   if(normal) {
+function turnPlayer(id: any, normal: boolean) {
+   if (normal) {
       createSVG(false, id);
       tField[id] = 1;
    }
-   else if(!normal){
+   else if (!normal) {
       createSVG(true, id);
       tField[id] = 2;
    }
@@ -124,20 +128,18 @@ function turnPlayer(id, normal){
 
 function turnAI() {
    if (difficultyActive == 1 && turnCounter != 9) {
-      let tmp = countLeftFields();
+      let tmp = countingEmptyFields();
       let tmpId = getRandom(tmp[0])
-
-      //sleep function? or animation for AI?
 
       createSVG(true, tmp[1][(tmpId)]);
       tField[tmp[1][(tmpId)]] = 2;
       turnCounter++;
    }
-   if (difficultyActive == 2){ /*...*/ }
-   if (difficultyActive == 3){ /*...*/ }
+   if (difficultyActive == 2) { /*...*/ }
+   if (difficultyActive == 3) { /*...*/ }
 }
 
-function countLeftFields() {
+function countingEmptyFields() {
    let counter = 0;
    let fieldCounter = 0;
    let fieldNumber = new Array();
@@ -151,9 +153,6 @@ function countLeftFields() {
       fieldCounter++
    };
 
-   console.log("countLeftFields:");
-   console.log(returnArray);
-
    returnArray.push(counter);
    returnArray.push(fieldNumber);
 
@@ -161,32 +160,33 @@ function countLeftFields() {
 }
 
 function getWinner() {
+   let locationForWinLine: string = "";
 
-   if (
-      tField[1] == tField[2] && tField[1] == tField[3] || 
-      tField[4] == tField[5] && tField[4] == tField[6] ||
-      tField[7] == tField[8] && tField[7] == tField[9] ||
+   if (tField[1] == tField[2] && tField[1] == tField[3] && tField[1] != 0) { locationForWinLine = "column1"; }
+   else if (tField[4] == tField[5] && tField[4] == tField[6] && tField[4] != 0) { locationForWinLine = "column2"; }
+   else if (tField[7] == tField[8] && tField[7] == tField[9] && tField[7] != 0) { locationForWinLine = "column3"; }
 
-      tField[1] == tField[4] && tField[1] == tField[7] ||
-      tField[2] == tField[5] && tField[2] == tField[8] ||
-      tField[3] == tField[6] && tField[3] == tField[9] ||
+   else if (tField[1] == tField[4] && tField[1] == tField[7] && tField[1] != 0) { locationForWinLine = "row1"; }
+   else if (tField[2] == tField[5] && tField[2] == tField[8] && tField[2] != 0) { locationForWinLine = "row2"; }
+   else if (tField[3] == tField[6] && tField[3] == tField[9] && tField[3] != 0) { locationForWinLine = "row3"; }
 
-      tField[1] == tField[5] && tField[1] == tField[9] ||
-      tField[3] == tField[5] && tField[3] == tField[7] 
-      
-      ) {
-         //won = true; 
-      }
+   else if (tField[1] == tField[5] && tField[1] == tField[9] && tField[1] != 0) { locationForWinLine = "diagonal1"; }
+   else if (tField[3] == tField[5] && tField[3] == tField[7] && tField[3] != 0) { locationForWinLine = "diagonal2"; }
+
+   if (locationForWinLine != "") setWinner(locationForWinLine);
 }
 
-function clearField(){
+function clearField() {
    document.querySelectorAll(".generatedSVG").forEach(e => e.remove());
+   let winBar = document.getElementById("10");
+   winBar ? winBar.className = 'winnLine' : null;
    tField = [5, 0, 0, 0, 0, 0, 0, 0, 0, 0];
    turnCounter = 0;
+   gameOver = false;
+   btnStatusUpdate();
 }
 
-
-function createSVG(type: boolean, id) {
+function createSVG(type: boolean, id: string) {
    let linkCircle = "./svg/circle.svg#circleSVG1";
    let linkCross = "./svg/cross.svg#crossSVG1";
    let link: string = "http://www.w3.org/2000/svg";
@@ -196,19 +196,42 @@ function createSVG(type: boolean, id) {
 
    if (type) use.setAttribute('href', linkCircle);
    else if (!type) use.setAttribute('href', linkCross);
-   
-   
+
+
    svg.setAttribute('viewBox', '0 0 100 100');
    svg.setAttribute('class', 'generatedSVG');
    svg.appendChild(use);
-   
-   document.getElementById(id).appendChild(svg);
+
+   document.getElementById(id)?.appendChild(svg);
 }
 
-function getRandom(max) {
+function getRandom(max: number) {
    return (Math.floor(Math.random() * max));
 }
 
-function setWinner() {
-   
+function setWinner(winLine: string) {
+   gameOver = true;
+   let winBar = document.getElementById("10");
+   winBar?.classList.toggle(winLine);
+}
+
+function btnStatusUpdate() {
+   let btnEvent = document.getElementById("btnEvent");
+   if (btnEvent && turnCounter == 0) {
+      btnEvent.innerHTML = 'Klicke auf ein Feld, um zu beginnen'
+   }
+   if (btnEvent && turnCounter >= 1) {
+      btnEvent.innerHTML = 'Spiel läuft'
+   }
+   if(gameOver) {
+      btnEvent.innerHTML = 'Klicke hier für ein Neustart'
+   }
+}
+
+function isEven(number: number) {
+   if (number % 2 == 0) {
+      return true;
+   } else {
+      return false;
+   }
 }

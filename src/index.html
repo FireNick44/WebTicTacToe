@@ -6,8 +6,6 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-   
    <link rel="shortcut icon" href="/src/svg/logo.svg">
    <link rel="stylesheet" href="/src/css/main.css">
    <title>WebTicTacToe</title>
@@ -35,7 +33,7 @@
          </div>
       </div>
       <div id="setting" class="settingBox card">
-         <p id="settingLabel" class="settingLabel hide">Einstellungen</p>
+         <p id="settingLabel" class="hide">Einstellungen</p>
          <div id="settingOptions" class="settingOptions hide">
             <p>Farbe</p>
             <p>Sprache</p>
@@ -47,9 +45,6 @@
       </div>
    </nav>
    <div class="center">
-      <div class="infoBord">
-         <p id="info" class="info">Klicke auf ein Feld, um zu beginnen</p>
-      </div>
       <div class="card cardT">
          <button id="1" class="btn" onclick="tKlick(this)"></button>
          <button id="2" class="btn" onclick="tKlick(this)"></button>
@@ -62,7 +57,7 @@
          <button id="9" class="btn" onclick="tKlick(this)"></button>
          <div id="10" class="winnLine" ></div>
       </div>
-      <button class="btnEvents card" onclick="clearField()">Start</button>
+      <button class="card btnEvents" onclick="clearField()" id="btnEvent">Klicke auf ein Feld, um zu beginnen</button>
    </div>
    <script src="./ts/TicTacToe.js"></script>
 </body>
